@@ -31,7 +31,7 @@ View command line help ::
 
 Run a sample message parsing with segment filter ::
 
-    python3 main.py --file <messages_file.txt> --segment NAM --limit 100
+    py main.py --file samples/sample_messages.txt --segment NAM --field_name FNA --chunk_size 4
 
 Run unit tests ::
 
