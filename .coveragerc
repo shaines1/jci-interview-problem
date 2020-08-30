@@ -1,0 +1,13 @@
+[run]
+branch = True
+
+source =
+    jci_interview_problem/
+
+[report]
+
+ignore_errors = True
+
+show_missing = True
+
+skip_covered = True

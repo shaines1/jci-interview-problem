@@ -1,0 +1,24 @@
+Problem: 
+Data Parsing
+
+Description:
+We want to be able to parse large data sets and provide a simple interface to search and view parsed messages. Create a module that parses messages in the following format:
+
+  <seg>|<field>|<field>...||<seg>|<field>...||<seg>...
+
+Where <seg> is a 3-character segment name, <field> is a 3-character field name, and the field value immediately follows the field name. A final segment separator (||) is optional.
+
+For example, a message could look like this:
+  NAM|FNAFred|LNABlogs||BIO|DOB02/03/1974||
+
+The interface should allow iterating over segments and fields in a message and searching by segment and field name. Assume that field and segment names may repeat.  All information in the data is important.
+
+Include whatever unit tests and/or user interface you feel are appropriate.
+
+Guidelines:
+1. Please use Python to complete the assignment
+2. Please comment your code to explain complex design patterns
+3. There is no deadline, but please do not spend more than a few hours to solve this problem
+4. Include a README.md with instructions on how to execute your code
+5. Please provide your solution via email (zipped please) or link I can access your work
+6. If you have any questions, please respond quickly
