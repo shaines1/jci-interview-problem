@@ -15,7 +15,7 @@ def main():
     logger = logging.getLogger()
     logger.setLevel(logging.DEBUG if args.verbose else logging.INFO)
 
-    messages = message_parser.parse(args.message_file, args.segment, args.field_name, args.limit)
+    messages = message_parser.parse(args.file, args.chunk_size, args.segment, args.field_name, args.limit)
 
     print('Parsed and found {} messages:\n'.format(len(messages)))
     print('\n'.join(messages))

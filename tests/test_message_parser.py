@@ -36,7 +36,7 @@ class TestMessageParser(unittest.TestCase):
         input_messages = ['NAM|FNAFred|LNABlogs', 'BIO|DOB02/03/1974']
         input_file = io.StringIO('||'.join(input_messages))
 
-        messages = message_parser.parse(input_file, segment='NAM')
+        messages = message_parser.parse(input_file, search_segment='NAM')
 
         self.assertEqual(messages, [input_messages[0]])
 
@@ -45,7 +45,7 @@ class TestMessageParser(unittest.TestCase):
         input_messages = ['NAM|FNAFred|LNABlogs', 'BIO|DOB02/03/1974']
         input_file = io.StringIO('||'.join(input_messages))
 
-        messages = message_parser.parse(input_file, field_name='DOB')
+        messages = message_parser.parse(input_file, search_field_name='DOB')
 
         self.assertEqual(messages, [input_messages[1]])
 
@@ -54,7 +54,7 @@ class TestMessageParser(unittest.TestCase):
         input_messages = ['NAM|FNAFred|LNABlogs', 'BIO|DOB02/03/1974']
         input_file = io.StringIO('||'.join(input_messages))
 
-        messages = message_parser.parse(input_file, segment='BIO', field_name='DOB')
+        messages = message_parser.parse(input_file, search_segment='BIO', search_field_name='DOB')
 
         self.assertEqual(messages, [input_messages[1]])
 
@@ -66,3 +66,21 @@ class TestMessageParser(unittest.TestCase):
         messages = message_parser.parse(input_file, limit=1)
 
         self.assertEqual(messages, [input_messages[0]])
+
+    def test_small_chunk_size(self):
+        """Tests a chunk size smaller than a message."""
+        input_messages = ['NAM|FNAFred|LNABlogs', 'BIO|DOB02/03/1974']
+        input_file = io.StringIO('||'.join(input_messages))
+
+        messages = message_parser.parse(input_file, chunk_size=4)
+
+        self.assertEqual(messages, input_messages)
+
+    def test_matching_chunk_size(self):
+        """Tests a chunk size matching the size of a message (plus delimeter)."""
+        input_messages = ['NAM|FNAFred|LNABlogs', 'BIO|DOB02/03/1974']
+        input_file = io.StringIO('||'.join(input_messages))
+
+        messages = message_parser.parse(input_file, chunk_size=len(input_messages[0]) + 2)
+
+        self.assertEqual(messages, input_messages)
